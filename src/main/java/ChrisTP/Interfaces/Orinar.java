@@ -1,5 +1,5 @@
 package ChrisTP.Interfaces;
 
 public interface Orinar {
-    public void orinar();
+    public Integer ir_baño();
 }
