@@ -19,6 +19,7 @@ public class Espartano extends Humano {
 
     public Integer beberEspartano()
     {
+        this.setCantidad_cerveza(this.getCantidad_cerveza()+6);
         return this.getBeber().tomar_fresca()+this.getToleranciaExtra();
     }
 

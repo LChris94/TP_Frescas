@@ -13,6 +13,7 @@ public class Vikingo extends Humano {
 
     public Integer beberViking()
     {
+        this.setCantidad_cerveza(this.getCantidad_cerveza()+9);
         return  this.getBeber().tomar_fresca()+this.getBebedorProfesional();
     }
 

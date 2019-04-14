@@ -1,5 +1,6 @@
 package ChrisTP.Clases;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class Enfrentamiento {
@@ -11,7 +12,6 @@ public class Enfrentamiento {
         this.setVikingo(vikingo);
         this.setEspartano(espartano);
         this.setCantidad_maxima_frescas(cantidad_maxima_frescas);
-        Batalla(this.getVikingo(), this.getEspartano());
     }
 
 
@@ -39,19 +39,24 @@ public class Enfrentamiento {
         this.cantidad_maxima_frescas = cantidad_maxima_frescas;
     }
 
-    private Humano Batalla(Vikingo vikingo, Espartano espartano) throws InterruptedException {
+    public Humano Batalla() throws InterruptedException {
+
         int numero_ronda = 1;
         boolean ganador = false;
+
         System.out.println("ENFRENTAMIENTO -- VIKINGO: "+vikingo.getNombre()+ " VS Espartano: "+espartano.getNombre());
         TimeUnit.SECONDS.sleep(1);
+
         while (!ganador && numero_ronda<=cantidad_maxima_frescas) {
+
             System.out.println(String.format("Numero de Ronda %d", numero_ronda));
             TimeUnit.SECONDS.sleep(2);
+
             int valor_vikingo = vikingo.beberViking();
             int valor_espartano = espartano.beberEspartano();
-            vikingo.setCantidad_cerveza(vikingo.getCantidad_cerveza()+10);
-            espartano.setCantidad_cerveza(espartano.getCantidad_cerveza()+6);
+
             System.out.println("Cantidad de Bebida en cuerpo: VIKINGO: "+vikingo.getCantidad_cerveza()+" - Espartano: "+espartano.getCantidad_cerveza());
+
             if(valor_vikingo == 3 && valor_espartano != 3 && vikingo.getCantidad_cerveza()>10)
             {
                 System.out.println("El vikingo debe ir al baño");
@@ -61,7 +66,7 @@ public class Enfrentamiento {
                 vikingo.setCantidad_cerveza(vikingo.getCantidad_cerveza()-15);
                 if(valor_orina == 4)
                 {
-                    System.out.println("El Espartano gano");
+                    System.out.println("El Espartano gano, el vikingo se orino.");
                     TimeUnit.SECONDS.sleep(1);
                     ganador = true;
                     return (Humano)espartano;
@@ -69,6 +74,7 @@ public class Enfrentamiento {
                 System.out.println("Cantidad de Bebida en cuerpo: VIKINGO: "+vikingo.getCantidad_cerveza()+" - Espartano: "+espartano.getCantidad_cerveza());
 
             }
+
             if(valor_espartano == 5 && valor_vikingo != 5 && espartano.getCantidad_cerveza()>6)
             {
                 System.out.println("El espartano debe ir al baño");
@@ -78,7 +84,7 @@ public class Enfrentamiento {
                 int valor_orina = espartano.getOrinar().ir_baño();
                 if(valor_orina == 3)
                 {
-                    System.out.println("El vikingo gano");
+                    System.out.println("El vikingo gano, el espartano se orino.");
                     TimeUnit.SECONDS.sleep(1);
                     ganador = true;
                     return (Humano)vikingo;
@@ -103,8 +109,20 @@ public class Enfrentamiento {
             ganador = true;
             return (Humano)espartano;
         }
-        else {
-            return null;
+        else {//Si son iguales van a sorteo 0-Vikingo 1-Espartano
+            Random rand = new Random();
+            int numero = rand.nextInt(2);
+            switch (numero)
+            {
+                case 0:
+                    return (Humano)vikingo;
+                case 1:
+                    return (Humano)espartano;
+                default:
+                    return null;
+
+            }
+
         }
 
 

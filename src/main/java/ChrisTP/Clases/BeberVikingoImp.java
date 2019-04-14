@@ -9,6 +9,6 @@ public class BeberVikingoImp implements Beber {
     @Override
     public Integer tomar_fresca() {
         Random rand = new Random();
-        return rand.nextInt(4);
+        return rand.nextInt(3);
     }
 }

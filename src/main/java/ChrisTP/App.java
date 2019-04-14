@@ -2,6 +2,7 @@ package ChrisTP;
 
 import ChrisTP.Clases.*;
 
+import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -14,49 +15,44 @@ public class App
 {
     public static void main( String[] args )
     {
-        List<Vikingo> participantes_vikingos = new ArrayList<Vikingo>(Arrays.asList(
+        List<Vikingo> vikingos = new ArrayList<Vikingo>(Arrays.asList(
                 new Vikingo("Juan",35,78, 1),
                 new Vikingo("Alan",28,60, 1),
                 new Vikingo("Fernando",54,97, 1)
         ));
 
-        List<Espartano> participantes_espartanos = new ArrayList<Espartano>(Arrays.asList(
+        vikingos.sort(Comparator.comparingInt(Vikingo::getPeso));
+
+        List<Espartano> espartanos = new ArrayList<Espartano>(Arrays.asList(
                 new Espartano("Marcelo",48,67, 2),
                 new Espartano("Damian",33,89, 2),
                 new Espartano("Alex",29,72, 2)));
 
+        espartanos.sort(Comparator.comparingInt(Espartano::getPeso));
 
-        List<Vikingo> vikingos = participantes_vikingos.stream()
-                .sorted(Comparator.comparingInt(Vikingo::getPeso))
-                .collect(Collectors.toList());
-
-        List<Espartano> espartanos = participantes_espartanos.stream()
-                .sorted(Comparator.comparingInt(Espartano::getPeso))
-                .collect(Collectors.toList());
 
         try {
-            Presentar_Equipos(vikingos, espartanos);
+
+            System.out.println("PRESENTACION DE VIKINGOS:");
+            vikingos.stream().forEach(h -> System.out.println(h));
+            TimeUnit.SECONDS.sleep(2);
+            System.out.println("PRESENTACION DE ESPARTANOS:");
+            espartanos.stream().forEach(h -> System.out.println(h));
+            TimeUnit.SECONDS.sleep(2);
+
+
             Torneo torneo = new Torneo(vikingos,espartanos,3);
             torneo.comenzar();
+            torneo.resultados();
+
+
         } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
 
     }
 
-    private static void Presentar_Equipos(List<Vikingo> lista_Vikingos, List<Espartano> lista_Espartanos) throws InterruptedException {
-        System.out.println("PRESENTACION DE VIKINGOS:");
-        for (Vikingo h: lista_Vikingos) {
-            TimeUnit.SECONDS.sleep(1);
-            System.out.println(h.toString());
-        }
-        TimeUnit.SECONDS.sleep(1);
-        System.out.println("PRESENTACION DE ESPARTANOS:");
-        for (Espartano h: lista_Espartanos) {
-            TimeUnit.SECONDS.sleep(1);
-            System.out.println(h.toString());
-        }
-        TimeUnit.SECONDS.sleep(1);
-    }
 }

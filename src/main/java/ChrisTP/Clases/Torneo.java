@@ -1,7 +1,11 @@
 package ChrisTP.Clases;
 
+import ChrisTP.Dao.ResultadoDAOMysql;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class Torneo {
@@ -17,13 +21,25 @@ public class Torneo {
         this.cantidad_competidores_x_equipo = cantidad_competidores_x_equipo;
     }
 
-    public void comenzar() throws InterruptedException {
+    public void comenzar() throws InterruptedException, SQLException {
         if(vikingos.size()<=cantidad_competidores_x_equipo || espartanos.size()<=cantidad_competidores_x_equipo)
         {
 
             while (cantidad_competidores_x_equipo != 0)
             {
                 enfrentamiento = new Enfrentamiento(vikingos.get(0), espartanos.get(0), 10);
+                Humano ganador = enfrentamiento.Batalla();
+
+                if (Objects.nonNull(ganador)) {
+                    if (ganador instanceof Vikingo) {
+                        Humano_Ganador resultado = new Humano_Ganador(ganador.getNombre(), ((Vikingo) ganador).getCantidad_cerveza(),"Vikingo");
+                        resultado.guardar_ganador();
+                    } else if (ganador instanceof Espartano) {
+                        Humano_Ganador resultado = new Humano_Ganador(ganador.getNombre(), ((Espartano) ganador).getCantidad_cerveza(),"Espartano");
+                        resultado.guardar_ganador();
+                    }
+                }
+
                 vikingos.remove(0);
                 espartanos.remove(0);
                 cantidad_competidores_x_equipo--;
@@ -35,6 +51,17 @@ public class Torneo {
         }
     }
 
+    public void resultados()
+    {
+        List<Humano_Ganador> ganadores = ResultadoDAOMysql.getInstance().listar();
+        System.out.println("==================================================================");
+        System.out.println("============================GANADORES=============================");
+        System.out.println("==================================================================");
+        int index = 1;
+        for (Humano_Ganador ganador: ganadores) {
+        System.out.println(index++ +"º - Nombre: "+ganador.getNombre_ganador()+" - Bebida en cuerpo: "+ganador.getBebida_en_cuerpo()+" - Raza: "+ganador.getRaza());
+        }
+    }
 
     public List<Vikingo> getVikingos() {
         return vikingos;
