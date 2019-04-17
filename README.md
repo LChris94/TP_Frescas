@@ -1,4 +1,5 @@
 # Trabajo Practico FRESCAS - Laboratorio V TP 1 UTN
+Para ejecutar -> Agregar a la base de datos una columna "raza".
 # ¿ Que es MAVEN ?
 Maven es un framework de administración de proyectos; en otras palabras, una herramienta que automatiza el proceso de construcción de un proyecto Java.
 Provee un conjunto de estándares de construcción, un modelo de repositorio de artefactos y un motor de software que administra y describe los proyectos. Por ejemplo, teniendo en cuenta la naturaleza interdependiente de proyectos open source, Maven permite normalizar ubicaciones para los archivos fuente, documentación y archivos binarios, para proveer una plantilla común para la documentación de proyecto y recuperar dependencias de proyecto de un repositorio compartido, de tal forma que el proceso de construcción consume menos tiempo y es mucho más transparente.
