@@ -1,11 +1,11 @@
 package ChrisTP.Clases;
 
-public class Vikingo extends Humano {
+public class Boss extends Humano {
     private Integer BebedorProfesional;
+    private Integer cantidad_cerveza = 0;
 
-
-    public Vikingo(String nombre, Integer edad, Integer peso, Integer BebedorProfesional) {
-        super(nombre, edad, peso, new OrinarVikingoImp(), new BeberVikingoImp());
+    public Boss(String nombre, Integer edad, Integer peso, Integer BebedorProfesional) {
+        super(nombre, edad, peso, new OrinarEspartanoImp(), new BeberVikingoImp());
         this.setBebedorProfesional(BebedorProfesional);
     }
 
@@ -33,4 +33,11 @@ public class Vikingo extends Humano {
                 ", Peso:" + Peso;
     }
 
+    public Integer getCantidad_cerveza() {
+        return cantidad_cerveza;
+    }
+
+    public void setCantidad_cerveza(Integer cantidad_cerveza) {
+        this.cantidad_cerveza = cantidad_cerveza;
+    }
 }

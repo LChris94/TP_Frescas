@@ -2,7 +2,6 @@ package ChrisTP.Clases;
 
 public class Espartano extends Humano {
     private Integer ToleranciaExtra;
-    private Integer cantidad_cerveza =0;
 
     public Espartano(String nombre, Integer edad, Integer peso, Integer ToleranciaExtra) {
         super(nombre, edad, peso, new OrinarEspartanoImp(), new BeberEstapartanoImp());
@@ -30,11 +29,4 @@ public class Espartano extends Humano {
                 ", Peso:" + Peso;
     }
 
-    public Integer getCantidad_cerveza() {
-        return cantidad_cerveza;
-    }
-
-    public void setCantidad_cerveza(Integer cantidad_cerveza) {
-        this.cantidad_cerveza = cantidad_cerveza;
-    }
 }

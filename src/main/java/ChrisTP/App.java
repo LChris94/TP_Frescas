@@ -30,7 +30,7 @@ public class App
 
         espartanos.sort(Comparator.comparingInt(Espartano::getPeso));
 
-
+        Boss dueno_taberna = new Boss("Mauricio",45,77,1);
         try {
 
             System.out.println("PRESENTACION DE VIKINGOS:");
@@ -44,8 +44,12 @@ public class App
             Torneo torneo = new Torneo(vikingos,espartanos,3);
             torneo.comenzar();
             torneo.resultados();
-
-
+            torneo.ganadores.sort(Comparator.comparingInt(Humano::getCantidad_cerveza));
+            //torneo.ganadores.stream().forEach(h -> System.out.println(h));
+            Humano ganador_humano = torneo.ganadores.get(torneo.ganadores.size()-1);
+            ganador_humano.setCantidad_cerveza(0);
+            Enfrentamiento e = new Enfrentamiento(ganador_humano,dueno_taberna,10);
+            e.Batalla();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (SQLException e) {

@@ -9,6 +9,7 @@ public class Humano {
     Integer Peso;
     Orinar Orinar;
     Beber Beber;
+    Integer cantidad_cerveza = 0;
 
     public Humano(String nombre, Integer edad, Integer peso, ChrisTP.Interfaces.Orinar orinar, ChrisTP.Interfaces.Beber beber) {
         Nombre = nombre;
@@ -57,4 +58,13 @@ public class Humano {
     public void setBeber(ChrisTP.Interfaces.Beber beber) {
         Beber = beber;
     }
+
+    public Integer getCantidad_cerveza() {
+        return cantidad_cerveza;
+    }
+
+    public void setCantidad_cerveza(Integer cantidad_cerveza) {
+        this.cantidad_cerveza = cantidad_cerveza;
+    }
+
 }

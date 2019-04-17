@@ -14,6 +14,7 @@ public class Torneo {
     private Integer cantidad_competidores_x_equipo;
     private Integer cantidad_frescas_maximas;
     private Enfrentamiento enfrentamiento;
+    public List<Humano> ganadores = new ArrayList<>();
 
     public Torneo(List<Vikingo> vikingos, List<Espartano> espartanos, Integer cantidad_competidores_x_equipo) {
         this.vikingos = vikingos;
@@ -22,6 +23,7 @@ public class Torneo {
     }
 
     public void comenzar() throws InterruptedException, SQLException {
+
         if(vikingos.size()<=cantidad_competidores_x_equipo || espartanos.size()<=cantidad_competidores_x_equipo)
         {
 
@@ -29,7 +31,7 @@ public class Torneo {
             {
                 enfrentamiento = new Enfrentamiento(vikingos.get(0), espartanos.get(0), 10);
                 Humano ganador = enfrentamiento.Batalla();
-
+                ganadores.add(ganador);
                 if (Objects.nonNull(ganador)) {
                     if (ganador instanceof Vikingo) {
                         Humano_Ganador resultado = new Humano_Ganador(ganador.getNombre(), ((Vikingo) ganador).getCantidad_cerveza(),"Vikingo");

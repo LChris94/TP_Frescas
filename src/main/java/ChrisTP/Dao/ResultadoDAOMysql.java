@@ -1,5 +1,6 @@
 package ChrisTP.Dao;
 
+import ChrisTP.Clases.Humano;
 import ChrisTP.Clases.Humano_Ganador;
 
 import java.sql.PreparedStatement;
@@ -67,4 +68,6 @@ public class ResultadoDAOMysql {
 
         return resultados;
     }
+
+
 }

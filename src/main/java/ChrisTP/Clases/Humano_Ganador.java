@@ -44,4 +44,5 @@ public class Humano_Ganador {
     public void guardar_ganador() throws SQLException {
         ResultadoDAOMysql.getInstance().crear(this);
     }
+
 }
